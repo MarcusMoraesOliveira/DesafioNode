@@ -32,8 +32,8 @@ Route.get('/getUser/:matricula', 'UsersController.getUser')
 
 
 Route.get('/getSala/:numero', 'SalasController.getSala')
-Route.post('/createsala', 'SalasController.createSala')
-Route.delete('/deleteSala', 'SalasController.deleteSala')
+Route.post('/createSala', 'SalasController.createSala')
+Route.delete('/deleteSala/:numero', 'SalasController.deleteSala')
 Route.put('/updateSala', 'SalasController.updateSala')
 Route.post('/addAluno/:sala', 'SalasController.addAluno')
 Route.delete('/removeAluno/:sala', 'SalasController.removeAluno')

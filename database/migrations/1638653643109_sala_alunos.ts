@@ -6,8 +6,8 @@ export default class SalaAlunos extends BaseSchema {
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
-      table.integer('matricula_aluno').unsigned().references('users.matricula')
-      table.integer('numero_sala').unsigned().references('salas.numero')
+      table.integer('matricula_aluno').unsigned().references('users.matricula').onDelete('CASCADE')
+      table.integer('numero_sala').unsigned().references('salas.numero').onDelete('CASCADE')
       table.unique(['matricula_aluno', 'numero_sala'])
     })
   }

@@ -149,15 +149,19 @@ export default class SalasController {
 
             const alunos = await sala.related('alunos').query()
 
+            let alunoisCadastrado = false;
             alunos.forEach( (aluno) =>{
                 if(aluno.matricula == matricula_aluno){
-                    response.status(400).send({
-                        'status': 'erro',
-                        'msg': 'Esse Aluno não pertence a essa sala'
-                    }) 
+                    alunoisCadastrado = true;
                 }
             })
 
+            if(!alunoisCadastrado){
+                response.status(400).send({
+                    'status': 'erro',
+                    'msg': 'Esse Aluno não pertence a essa sala'
+                }) 
+            }
             await sala.related('alunos').detach([matricula_aluno])
 
             response.status(200).send({

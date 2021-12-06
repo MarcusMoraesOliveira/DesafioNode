@@ -23,7 +23,7 @@ export default class UsersController {
     {
         const data = request.only(['nome', 'email', 'data_nascimento', 'tipo_usuario'])
         try{
-            data.data_nascimento = Date.parse(data.data_nascimento)
+            data.data_nascimento = new Date(Date.parse(data.data_nascimento))
             const retorno = User.create(data)
 
             response.status(200).send(retorno)
@@ -70,6 +70,7 @@ export default class UsersController {
             user.data_nascimento = new Date(Date.parse(data.data_nascimento))
             user.tipo_usuario = data.tipo_usuario
 
+            user.save()
             response.status(200).send({
                 'status': 'sucesso',
                 'msg': 'O Usuário foi excluido com sucesso'
